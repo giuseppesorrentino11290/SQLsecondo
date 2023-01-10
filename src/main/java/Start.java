@@ -7,16 +7,16 @@ public class Start {
 
     public static void main(String[] args) {
 
-        Connection con = null;
+        Connection c = null;
 
         try{
             String url = "jdbc:mysql://localhost:3306/newdb";
             String user = "developer";
             String password = "passwordhere";
 
-            con = DriverManager.getConnection(url, user, password);
+            c = DriverManager.getConnection(url, user, password);
 
-            Statement s = con.createStatement();
+            Statement s = c.createStatement();
 
             String sql = "CREATE TABLE student " +
                     "(student_id INTEGER(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
@@ -25,10 +25,10 @@ public class Start {
 
             s.executeUpdate(sql);
 
-            s.execute("INSERT INTO newdb.student (last_name, first_name) VALUES('Sorrentino', 'Giuseppe');");
-            s.execute("INSERT INTO newdb.student (last_name, first_name) VALUES('Auditore', 'Ezio');");
-            s.execute("INSERT INTO newdb.student (last_name, first_name) VALUES('Miles', 'Desmond');");
-            s.execute("INSERT INTO newdb.student (last_name, first_name) VALUES('Eivor', ' Morso di Lupo');");
+            s.executeUpdate("INSERT INTO newdb.student (last_name, first_name) VALUES('Marrone', 'Bruno');");
+            s.executeUpdate("INSERT INTO newdb.student (last_name, first_name) VALUES('Rossi', 'Damiano');");
+            s.executeUpdate("INSERT INTO newdb.student (last_name, first_name) VALUES('Bianchi', 'Giuseppe');");
+            s.executeUpdate("INSERT INTO newdb.student (last_name, first_name) VALUES('Verdi', ' Gabriella');");
 
 
         }catch(SQLException e) {
@@ -36,8 +36,8 @@ public class Start {
 
         } finally {
             try{
-                if(con != null)
-                    con.close();
+                if(c != null)
+                    c.close();
             }catch(SQLException ex){
                 System.out.println(ex.getMessage());
             }
